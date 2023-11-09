@@ -47,7 +47,25 @@ list = [-5, -1, -3]
 p largest_contiguous_subsum_slow(list) == -1 #  (from [-1])
 
 def largest_contiguous_subsum_fast(array)
-  # kadane help us!
+  largest_sum = array.first
+  current_sum = array.first
+
+  array.drop(1).each do |ele|
+    if current_sum.negative?
+      current_sum = 0
+    end
+
+    # if ele + current_sum > current_sum #if adding the element is beneficial
+      current_sum += ele
+    # end
+    
+    if current_sum > largest_sum
+      largest_sum = current_sum
+    end
+  end
+
+  return largest_sum
+
 end
 
 list = [5, 3, -7]
